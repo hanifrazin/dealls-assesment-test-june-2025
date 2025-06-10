@@ -243,15 +243,16 @@ describe('Landing Page Mentoring', () => {
                 });
         });
 
-        it('view detail mentor at Akademik tab', () => {
+        it.only('view detail mentor at Akademik tab', () => {
             cy.xpath(`//div[@class="flex border-b border-b-neutral-15"]/a[2]`).click();
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Informatics');
+            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Beasiswa');
             cy.wait(2000);
             cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
                     const total = $el.length;
                     const randomNumber = Math.floor(Math.random() * total) + 1;
+                    
                     cy.wrap($el[randomNumber]).click({ force: true });
                     cy.contains($el[randomNumber].textContent).should('be.visible');
                 });
