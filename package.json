@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "merge-reports": "mochawesome-merge cypress/reports/mochawesome-report/*.json > cypress/reports/merge-report/merge-mochawesome.json",
+    "generate-report": "marge cypress/reports/merge-report/merge-mochawesome.json --reportDir cypress/reports/html-report --reportFilename index.html --inlineAssets",
+    "report": "npm run merge-reports && npm run generate-report",
+    "test:only": "npx cypress run --browser chrome --headless",
+    "test:report": "npx cypress run --browser chrome --headless --reporter mochawesome --reporter-options reportDir=cypress/reports/mochawesome-report,overwrite=true,json=true"
   },
   "repository": {
     "type": "git",
@@ -19,6 +23,7 @@
   },
   "homepage": "https://github.com/hanifrazin/dealls-assesment-test-june-2025#readme",
   "devDependencies": {
+    "@faker-js/faker": "^9.8.0",
     "cypress": "^14.4.1",
     "cypress-xpath": "^2.0.1",
     "mochawesome": "^7.1.3",

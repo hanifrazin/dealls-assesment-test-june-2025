@@ -1,8 +1,15 @@
 const { defineConfig } = require("cypress");
 
 const envVariables = {
+  LANGUAGE: "idn",
   dev: {
-    url: "https://job-portal-user-dev-skx7zw44dq-et.a.run.app/mentoring"
+    url: "https://job-portal-user-dev-skx7zw44dq-et.a.run.app",
+    en:{
+
+    },
+    idn: {
+
+    }
   },
   stg: {
 
