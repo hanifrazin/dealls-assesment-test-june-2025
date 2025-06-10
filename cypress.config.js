@@ -10,9 +10,6 @@ const envVariables = {
     idn: {
 
     }
-  },
-  stg: {
-
   }
 }
 

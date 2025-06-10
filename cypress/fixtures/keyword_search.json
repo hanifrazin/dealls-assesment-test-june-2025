@@ -1,0 +1,20 @@
+{
+    "karier": {
+        "name": "Mentor",
+        "company": "Tokopedia",
+        "role": "Product Analyst",
+        "industry": "IT",
+        "university": "Universitas Gadjah Mada",
+        "jurusan": "Informatics",
+        "topics": "Communication Skills"
+    },
+    "akademik": {
+        "name": "Mentor",
+        "company": "Tokopedia",
+        "role": "Product Analyst",
+        "industry": "IT",
+        "university": "University of Indonesia",
+        "jurusan": "Informatics",
+        "topics": "Beasiswa"
+    }
+}

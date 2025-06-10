@@ -37,7 +37,6 @@ jobs:
         run: ls -lah node_modules/.bin/
 
       - name: Run Cypress tests
-        if: ${{ github.event.inputs.skip_report != true }}
         run: npm run test:only
 
       - name: Debug Report Folder

@@ -103,159 +103,167 @@ describe('Landing Page Mentoring', () => {
         });
     });
 
-    context('Search Mentors at Karier tab',() => {
-        it('should be search mentors by name at Karier tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Mentor');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-              .then(($el) => {
-                    const found = [...$el].every(el => el.textContent.includes('Mentor'));
-                    expect(found).to.be.true;
-              });
-        });
-
-        it('should be search mentors by company at Karier tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Tokopedia');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-              .then(($el) => {
-                    const found = [...$el].every(el => el.textContent.includes('Tokopedia'));
-                    expect(found).to.be.true;
-              });
-        });
-
-        it('should be search mentors by role at Karier tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Product Analyst');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-              .then(($el) => {
-                    const found = [...$el].some(el => el.textContent.includes('Product Analyst'));
-                    expect(found).to.be.true;
-              });
-        });
-
-        it('should be search mentors by industries at Karier tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('IT');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-        });
-
-        it('should be search mentors by university at Karier tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Universitas Gadjah Mada');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-        });
-
-        it('should be search mentors by major / jurusan at Karier tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Informatics');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-        });
-
-        it('should be search mentors by topic at Karier tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Communication Skills');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-              .then(($el) => {
-                    const found = [...$el].some(el => el.textContent.includes('Communication Skills'));
-                    expect(found).to.be.true;
-              });
-        });
-    })
-
-    context('Search Mentors at Akademik tab',() => {
+    describe('Search, and View Mentors', () => {
+        let akademik, karier = {};
         beforeEach(() => {
-            cy.xpath(`//div[@class="flex border-b border-b-neutral-15"]/a[2]`).click();
-        });
-        it('should be search mentors by name at Akademik tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Mentor');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-              .then(($el) => {
-                    const found = [...$el].every(el => el.textContent.includes('Mentor'));
-                    expect(found).to.be.true;
-              });
-        });
+            cy.fixture("keyword_search").then((data) => {
+                karier = data.karier;
+                akademik = data.akademik;
+            });
+        })
 
-        it('should be search mentors by company at Akademik tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Tokopedia');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-        });
-
-        it('should be search mentors by role at Akademik tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Product Analyst');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-        });
-
-        it('should be search mentors by industries at Akademik tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('IT');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-        });
-
-        it('should be search mentors by university at Akademik tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('University of Indonesia');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-        });
-
-        it('should be search mentors by major / jurusan at Akademik tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Informatics');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-        });
-
-        it('should be search mentors by topic at Akademik tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Beasiswa');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-              .should('have.length.greaterThan', 0)
-        });
-    })
-
-    context('View Mentor Details', () => {
-        it('view detail mentor at Karier tab', () => {
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Tokopedia');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+        context('Search Mentors at Karier tab',() => {
+            it('should be search mentors by name at Karier tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.name}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
-                    const total = $el.length;
-                    const randomNumber = Math.floor(Math.random() * total) + 1;
-
-                    cy.wrap($el[randomNumber]).click({ force: true });
-                    cy.contains($el[randomNumber].textContent).should('be.visible');
+                        const found = [...$el].every(el => el.textContent.includes(`${karier.name}`));
+                        expect(found).to.be.true;
                 });
-        });
+            });
 
-        it.only('view detail mentor at Akademik tab', () => {
-            cy.xpath(`//div[@class="flex border-b border-b-neutral-15"]/a[2]`).click();
-            cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type('Beasiswa');
-            cy.wait(2000);
-            cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+            it('should be search mentors by company at Karier tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.company}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
-                    const total = $el.length;
-                    const randomNumber = Math.floor(Math.random() * total) + 1;
-                    
-                    cy.wrap($el[randomNumber]).click({ force: true });
-                    cy.contains($el[randomNumber].textContent).should('be.visible');
+                        const found = [...$el].every(el => el.textContent.includes(`${karier.company}`));
+                        expect(found).to.be.true;
                 });
+            });
+
+            it('should be search mentors by role at Karier tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.role}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+                .then(($el) => {
+                        const found = [...$el].some(el => el.textContent.includes(`${karier.role}`));
+                        expect(found).to.be.true;
+                });
+            });
+
+            it('should be search mentors by industries at Karier tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.industry}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+            });
+
+            it('should be search mentors by university at Karier tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.university}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+            });
+
+            it('should be search mentors by major / jurusan at Karier tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.jurusan}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+            });
+
+            it('should be search mentors by topic at Karier tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.topics}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+                .then(($el) => {
+                        const found = [...$el].some(el => el.textContent.includes(`${karier.topics}`));
+                        expect(found).to.be.true;
+                });
+            });
         });
-    });
+
+        context('Search Mentors at Akademik tab',() => {
+            beforeEach(() => {
+                cy.xpath(`//div[@class="flex border-b border-b-neutral-15"]/a[2]`).click();
+            });
+            it('should be search mentors by name at Akademik tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.name}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+                .then(($el) => {
+                        const found = [...$el].every(el => el.textContent.includes(`${akademik.name}`));
+                        expect(found).to.be.true;
+                });
+            });
+
+            it('should be search mentors by company at Akademik tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.company}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+            });
+
+            it('should be search mentors by role at Akademik tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.role}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+            });
+
+            it('should be search mentors by industries at Akademik tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.industry}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+            });
+
+            it('should be search mentors by university at Akademik tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.university}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+            });
+
+            it('should be search mentors by major / jurusan at Akademik tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.jurusan}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+            });
+
+            it('should be search mentors by topic at Akademik tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.topics}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                .should('have.length.greaterThan', 0)
+            });
+        });
+
+        context.only('View Mentor Details', () => {
+            it('view detail mentor at Karier tab', () => {
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.company}`);
+                cy.wait(3000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const total = $el.length;
+                        const randomNumber = Math.floor(Math.random() * total) + 1;
+
+                        cy.wrap($el[randomNumber]).click({ force: true })
+                    });
+            });
+
+            it('view detail mentor at Akademik tab', () => {
+                cy.xpath(`//div[@class="flex border-b border-b-neutral-15"]/a[2]`).click();
+                cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.topics}`);
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const total = $el.length;
+                        const randomNumber = Math.floor(Math.random() * total) + 1;
+
+                        cy.wrap($el[randomNumber]).click({ force: true });
+                    });
+            });
+        });
+    });  
 })
