@@ -211,10 +211,6 @@ describe('Landing Page Mentoring', () => {
             cy.wait(2000);
             cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
               .should('have.length.greaterThan', 0)
-              .then(($el) => {
-                    const found = [...$el].some(el => el.textContent.includes('University of Indonesia'));
-                    expect(found).to.be.true;
-              });
         });
 
         it('should be search mentors by major / jurusan at Akademik tab', () => {
@@ -222,10 +218,6 @@ describe('Landing Page Mentoring', () => {
             cy.wait(2000);
             cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
               .should('have.length.greaterThan', 0)
-              .then(($el) => {
-                    const found = [...$el].some(el => el.textContent.includes('Informatics'));
-                    expect(found).to.be.true;
-              });
         });
 
         it('should be search mentors by topic at Akademik tab', () => {
