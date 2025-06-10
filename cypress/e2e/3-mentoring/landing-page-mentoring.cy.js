@@ -7,7 +7,8 @@ describe('Landing Page Mentoring', () => {
         cy.clearAllLocalStorage();
         cy.visit(`${input.url}/mentoring`);
         cy.get('html').should('have.attr', 'lang').then((language) => {
-            lang = language === 'idn' ? 'idn' : 'en';
+            cy.log(`${language}`);
+            lang = language === 'id' ? 'idn' : 'en';
         });
     });
 
@@ -237,17 +238,20 @@ describe('Landing Page Mentoring', () => {
             });
         });
 
-        context.only('View Mentor Details', () => {
+        context('View Mentor Details', () => {
             it('view detail mentor at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.company}`);
-                cy.wait(3000);
-                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
+                cy.wait(2000);
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
                         const total = $el.length;
                         const randomNumber = Math.floor(Math.random() * total) + 1;
 
-                        cy.wrap($el[randomNumber]).click({ force: true })
+                        cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a[${randomNumber}]`)
+                            .should('be.visible')
+                            .click();
+                        cy.xpath(`//a[contains(text(), "${input[lang].review}")]`).should('be.visible').click({multiple: true});
                     });
             });
 
@@ -261,8 +265,11 @@ describe('Landing Page Mentoring', () => {
                         const total = $el.length;
                         const randomNumber = Math.floor(Math.random() * total) + 1;
 
-                        cy.wrap($el[randomNumber]).click({ force: true });
-                    });
+                        cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a[${randomNumber}]`)
+                            .should('be.visible')
+                            .click();
+                        cy.xpath(`//a[contains(text(), "${input[lang].review}")]`).should('be.visible').click({multiple: true});
+});
             });
         });
     });  
