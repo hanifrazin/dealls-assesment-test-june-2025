@@ -5,10 +5,14 @@ const envVariables = {
   dev: {
     url: "https://job-portal-user-dev-skx7zw44dq-et.a.run.app",
     en:{
-      review: "Review"
+      review: "Review",
+      signup: "Sign Up",
+      login: "Log In",
     },
     idn: {
-      review: "Ulasan"
+      review: "Ulasan",
+      signup: "Daftar",
+      login: "Masuk",
     }
   }
 }

@@ -1,3 +1,5 @@
+import { stringify } from "flatted";
+
 const input = Cypress.env('dev');
 let lang = Cypress.env('LANGUAGE') || 'idn';
 
@@ -117,10 +119,11 @@ describe('Landing Page Mentoring', () => {
             it('should be search mentors by name at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.name}`);
                 cy.wait(2000);
-                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
-                        const found = [...$el].every(el => el.textContent.includes(`${karier.name}`));
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.name}`));
+                        cy.log(`mentor karier found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
                         expect(found).to.be.true;
                 });
             });
@@ -128,10 +131,11 @@ describe('Landing Page Mentoring', () => {
             it('should be search mentors by company at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.company}`);
                 cy.wait(2000);
-                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[2]/div`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
-                        const found = [...$el].every(el => el.textContent.includes(`${karier.company}`));
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.company}`));
+                        cy.log(`company found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
                         expect(found).to.be.true;
                 });
             });
@@ -139,10 +143,11 @@ describe('Landing Page Mentoring', () => {
             it('should be search mentors by role at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.role}`);
                 cy.wait(2000);
-                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[1]/div`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
-                        const found = [...$el].some(el => el.textContent.includes(`${karier.role}`));
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.role}`));
+                        cy.log(`role found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
                         expect(found).to.be.true;
                 });
             });
@@ -171,10 +176,11 @@ describe('Landing Page Mentoring', () => {
             it('should be search mentors by topic at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.topics}`);
                 cy.wait(2000);
-                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//div[@class="rc-overflow"]//p`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
-                        const found = [...$el].some(el => el.textContent.includes(`${karier.topics}`));
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.topics}`));
+                        cy.log(`topic found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
                         expect(found).to.be.true;
                 });
             });
@@ -187,10 +193,11 @@ describe('Landing Page Mentoring', () => {
             it('should be search mentors by name at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.name}`);
                 cy.wait(2000);
-                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
-                        const found = [...$el].every(el => el.textContent.includes(`${akademik.name}`));
+                        const found = [...$el].every(el => el.innerText.trim().includes(`${akademik.name}`));
+                        cy.log(`mentor akademik found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
                         expect(found).to.be.true;
                 });
             });
@@ -219,22 +226,37 @@ describe('Landing Page Mentoring', () => {
             it('should be search mentors by university at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.university}`);
                 cy.wait(2000);
-                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[2]/div`)
                 .should('have.length.greaterThan', 0)
+                .then(($el) => {
+                    const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.university}`));
+                    expect(found).to.be.true;
+                    cy.log(`university found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                });
             });
 
             it('should be search mentors by major / jurusan at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.jurusan}`);
                 cy.wait(2000);
-                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[1]/div`)
                 .should('have.length.greaterThan', 0)
+                .then(($el) => {
+                    const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.jurusan}`));
+                    expect(found).to.be.true;
+                    cy.log(`jurusan found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                });
             });
 
             it('should be search mentors by topic at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.topics}`);
                 cy.wait(2000);
-                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
+                cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//div[@class="rc-overflow"]//p`)
                 .should('have.length.greaterThan', 0)
+                .then(($el) => {
+                    const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.topics}`));
+                    expect(found).to.be.true;
+                    cy.log(`topic found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                });
             });
         });
 
@@ -269,7 +291,7 @@ describe('Landing Page Mentoring', () => {
                             .should('be.visible')
                             .click();
                         cy.xpath(`//a[contains(text(), "${input[lang].review}")]`).should('be.visible').click({multiple: true});
-});
+                    });
             });
         });
     });  
