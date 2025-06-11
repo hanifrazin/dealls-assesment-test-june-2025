@@ -1,9 +1,10 @@
 import { stringify } from "flatted";
 
-const input = Cypress.env('dev');
-let lang = Cypress.env('LANGUAGE') || 'idn';
 
 describe('Landing Page Mentoring', () => {
+    const input = Cypress.env('dev');
+    let lang = Cypress.env('LANGUAGE') || 'idn';
+    
     beforeEach(() => {
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
@@ -14,53 +15,89 @@ describe('Landing Page Mentoring', () => {
         });
     });
 
-    context('List Mentoring Karier', () => {
-        beforeEach(() => {
-            cy.xpath(`//div[@class="flex border-b border-b-neutral-15"]/a[1]`).click();
+    describe('List Mentoring', () => {
+        context('List Mentoring Karier', () => {
+            beforeEach(() => {
+                cy.xpath(`//div[@class="flex border-b border-b-neutral-15"]/a[1]`).click();
+            });
+    
+            it('should display the mentoring landing page at Karier Tab', () => {
+                cy.url().should('include', '/mentoring');
+            });
+    
+            it('should show the list of accounting mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]/div[2]`).click({ multiple: true });
+            });
+    
+            it('should show the list of art & design mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]/div[3]`).click({ multiple: true });
+            });
+    
+            it('should show the list of business mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]/div[4]`).click({ multiple: true });
+            });
+    
+            it('should show the list of data mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]/div[5]`).click({ multiple: true });
+            });
+    
+            it('should show the list of finance mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]/div[6]`).click({ multiple: true });
+            });
+    
+            it('should show the list of HR mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]/div[7]`).click({ multiple: true });
+            });
+    
+            it('should show the list of IT & Eng mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]/div[8]`).click({ multiple: true });
+            });
+    
+            it('should show the list of Law & Consulting mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]/div[9]`).click({ multiple: true });
+            });
+    
+            it('should show the list of Product mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]/div[10]`).click({ multiple: true });
+            });
+    
+            it('should show the list of Sales & Ops mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]/div[11]`).click({ multiple: true });
+            });
         });
 
-        it('should display the mentoring landing page at Karier Tab', () => {
-            cy.url().should('include', '/mentoring');
-        });
-
-        it('should show the list of accounting mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]/div[2]`).click({ multiple: true });
-        });
-
-        it('should show the list of art & design mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]/div[3]`).click({ multiple: true });
-        });
-
-        it('should show the list of business mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]/div[4]`).click({ multiple: true });
-        });
-
-        it('should show the list of data mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]/div[5]`).click({ multiple: true });
-        });
-
-        it('should show the list of finance mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]/div[6]`).click({ multiple: true });
-        });
-
-        it('should show the list of HR mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]/div[7]`).click({ multiple: true });
-        });
-
-        it('should show the list of IT & Eng mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]/div[8]`).click({ multiple: true });
-        });
-
-        it('should show the list of Law & Consulting mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]/div[9]`).click({ multiple: true });
-        });
-
-        it('should show the list of Product mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]/div[10]`).click({ multiple: true });
-        });
-
-        it('should show the list of Sales & Ops mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]/div[11]`).click({ multiple: true });
+        context('List Mentoring Akademik', () => {
+            beforeEach(() => {
+                cy.xpath(`//div[@class="flex border-b border-b-neutral-15"]/a[2]`).click();
+            });
+    
+            it('should display the mentoring landing page at Akademik Tab', () => {
+                cy.url().should('include', '/mentoring?mTab=academics');
+            });
+    
+            it('should show the list of Beasiswa S1 mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"Beasiswa S1")]`).click({ multiple: true });
+            });
+    
+            it('should show the list of Beasiswa S2 mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"Beasiswa S2")]`).click({ multiple: true });
+            });
+    
+            it('should show the list of IISMA/ Exchange mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"SMA")]`).click({ multiple: true });
+            });
+    
+            it('should show the list of Internship mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"Internship")]`).click({ multiple: true });
+            });
+    
+            it('should show the list of Leadership Program mentors at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"Leadership")]`).click({ multiple: true });
+            });
+    
+            it('should show the list of Study Abroad mentor at Karier tab', () => {
+                cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"Study Abroad")]`).click({ multiple: true });
+            });
         });
 
         afterEach(() => {
@@ -68,45 +105,8 @@ describe('Landing Page Mentoring', () => {
         });
     });
 
-    context('List Mentoring Akademik', () => {
-        beforeEach(() => {
-            cy.xpath(`//div[@class="flex border-b border-b-neutral-15"]/a[2]`).click();
-        });
 
-        it('should display the mentoring landing page at Akademik Tab', () => {
-            cy.url().should('include', '/mentoring?mTab=academics');
-        });
-
-        it('should show the list of Beasiswa S1 mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"Beasiswa S1")]`).click({ multiple: true });
-        });
-
-        it('should show the list of Beasiswa S2 mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"Beasiswa S2")]`).click({ multiple: true });
-        });
-
-        it('should show the list of IISMA/ Exchange mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"SMA")]`).click({ multiple: true });
-        });
-
-        it('should show the list of Internship mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"Internship")]`).click({ multiple: true });
-        });
-
-        it('should show the list of Leadership Program mentors at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"Leadership")]`).click({ multiple: true });
-        });
-
-        it('should show the list of Study Abroad mentor at Karier tab', () => {
-            cy.xpath(`//div[@class="swiper-wrapper"]//a[contains(text(),"Study Abroad")]`).click({ multiple: true });
-        });
-
-        afterEach(() => {
-            cy.wait(2000);
-        });
-    });
-
-    describe('Search, and View Mentors', () => {
+    describe('Search and View Mentors', () => {
         let akademik, karier = {};
         beforeEach(() => {
             cy.fixture("keyword_search").then((data) => {

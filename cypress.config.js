@@ -8,11 +8,23 @@ const envVariables = {
       review: "Review",
       signup: "Sign Up",
       login: "Log In",
+      nextbtn: "Next",
+      backbtn: "Back",
+      finishbtn: "Finish",
+      work: "Work",
+      org: "Organizational",
+      cert: "Certification/Achievement",
     },
     idn: {
       review: "Ulasan",
       signup: "Daftar",
       login: "Masuk",
+      nextbtn: "Selanjutnya",
+      backbtn: "Kembali",
+      finishbtn: "Finish",
+      work: "Kerja",
+      org: "Organisasi",
+      cert: "Sertifikasi/Pencapaian",
     }
   }
 }

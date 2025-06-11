@@ -1,0 +1,23 @@
+{
+    "name": "Ryan",
+    "phone": "6287774400999",
+    "email": "test@blabla.com",
+    "linkedIn": "https://www.linkedin.com/in/test-profile",
+    "lastEducation": "Universitas Pamulang",
+    "work_exp": {
+        "company": "Tokopedia",
+        "level": "Senior",
+        "role": "QA",
+        "dateStart": "01/2020",
+        "dateEnd": "05/2025"
+    },
+    "org_exp": {
+        "nama": "Lembaga Dakwah Kampus",
+        "role": "BPH LDK FMIPA"
+    },
+    "achievements_exp": {
+        "nama": "ISTQB Certified Tester",
+        "vendor": "IDSTB"
+    }
+
+}
