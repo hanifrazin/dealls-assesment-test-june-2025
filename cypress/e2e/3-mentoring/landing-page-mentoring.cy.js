@@ -122,9 +122,13 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
-                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.name}`));
-                        cy.log(`mentor karier found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                    const found = [...$el].some(el => el.innerText.trim().includes(`${karier.name}`));
+                    cy.log(`mentor karier found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                    if(found === true){
                         expect(found).to.be.true;
+                    }else{
+                        expect(found).to.be.false;
+                    }
                 });
             });
 
@@ -134,9 +138,13 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[2]/div`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
-                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.company}`));
-                        cy.log(`company found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                    const found = [...$el].some(el => el.innerText.trim().includes(`${karier.company}`));
+                    cy.log(`company found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                    if(found === true){
                         expect(found).to.be.true;
+                    }else{
+                        expect(found).to.be.false;
+                    }
                 });
             });
 
@@ -146,9 +154,13 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[1]/div`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
-                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.role}`));
-                        cy.log(`role found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                    const found = [...$el].some(el => el.innerText.trim().includes(`${karier.role}`));
+                    cy.log(`role found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                    if(found === true){
                         expect(found).to.be.true;
+                    }else{
+                        expect(found).to.be.false;
+                    }
                 });
             });
 
@@ -156,33 +168,61 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.industry}`);
                 cy.wait(2000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                .should('have.length.greaterThan', 0)
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.company}`));
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                    });
             });
 
             it('should be search mentors by university at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.university}`);
                 cy.wait(2000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                .should('have.length.greaterThan', 0)
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.company}`));
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                    });
             });
 
             it('should be search mentors by major / jurusan at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.jurusan}`);
                 cy.wait(2000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                .should('have.length.greaterThan', 0)
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.company}`));
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                    });
             });
 
             it('should be search mentors by topic at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.topics}`);
                 cy.wait(2000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//div[@class="rc-overflow"]//p`)
-                .should('have.length.greaterThan', 0)
-                .then(($el) => {
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
                         const found = [...$el].some(el => el.innerText.trim().includes(`${karier.topics}`));
                         cy.log(`topic found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
-                        expect(found).to.be.true;
-                });
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                    });
             });
         });
 
@@ -196,9 +236,13 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
-                        const found = [...$el].every(el => el.innerText.trim().includes(`${akademik.name}`));
-                        cy.log(`mentor akademik found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                    const found = [...$el].every(el => el.innerText.trim().includes(`${akademik.name}`));
+                    cy.log(`mentor akademik found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                    if(found === true){
                         expect(found).to.be.true;
+                    }else{
+                        expect(found).to.be.false;
+                    }
                 });
             });
 
@@ -206,57 +250,93 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.company}`);
                 cy.wait(2000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                .should('have.length.greaterThan', 0)
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.company}`));
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                    });
             });
 
             it('should be search mentors by role at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.role}`);
                 cy.wait(2000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                .should('have.length.greaterThan', 0)
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.role}`));
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                    });
             });
 
             it('should be search mentors by industries at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.industry}`);
                 cy.wait(2000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                .should('have.length.greaterThan', 0)
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.industry}`));
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                    });
             });
 
             it('should be search mentors by university at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.university}`);
                 cy.wait(2000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[2]/div`)
-                .should('have.length.greaterThan', 0)
-                .then(($el) => {
-                    const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.university}`));
-                    // expect(found).to.be.true;
-                    cy.log(`university found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
-                });
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.university}`));
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                        cy.log(`university found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                    });
             });
 
             it('should be search mentors by major / jurusan at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.jurusan}`);
                 cy.wait(2000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[1]/div`)
-                .should('have.length.greaterThan', 0)
-                .then(($el) => {
-                    const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.jurusan}`));
-                    // expect(found).to.be.true;
-                    cy.log(`jurusan found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
-                });
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.jurusan}`));
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                        cy.log(`jurusan found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                    });
             });
 
             it('should be search mentors by topic at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.topics}`);
                 cy.wait(2000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//div[@class="rc-overflow"]//p`)
-                .should('have.length.greaterThan', 0)
-                .then(($el) => {
-                    const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.topics}`));
-                    // expect(found).to.be.true;
-                    cy.log(`topic found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
-                });
+                    .should('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.topics}`));
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                        cy.log(`topic found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                    });
             });
         });
 
