@@ -30,7 +30,7 @@
      ```
  1. You want to run all test with generate report each test you must using this command
      ```
-     npm run test:only
+     npm run test:report
      ```
  1. You want to merge report and convert to html report you must using this command
      ```
