@@ -27,3 +27,11 @@
 Cypress.Commands.add('getLang', () => {
     return cy.get('html').should('have.attr', 'lang');
 });
+
+Cypress.Commands.add('loginTrainee', (input,username,password) => {
+    cy.xpath(`//a[normalize-space()='${input.login}']`).click();
+    cy.url().should('include', '/sign-in');
+    cy.get(`#basic_email`).click().type(`${username}`);
+    cy.get(`#basic_password`).click().type(`${password}`);
+    cy.xpath(`//button[@type="submit"]`).click({ force: true });
+})
