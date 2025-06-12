@@ -1,18 +1,16 @@
-import { stringify } from "flatted";
-
-
 describe('Landing Page Mentoring', () => {
-    const input = Cypress.env('dev');
-    let lang = Cypress.env('LANGUAGE') || 'idn';
+    const base_url = Cypress.env('base_url');
+    let lang = Cypress.env('language') || 'idn';
+    let input = {};
     
     beforeEach(() => {
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
-        cy.visit(`${input.url}/mentoring`);
-        cy.get('html').should('have.attr', 'lang').then((language) => {
-            cy.log(`${language}`);
-            lang = language === 'id' ? 'idn' : 'en';
-        });
+        cy.visit(`${base_url}/mentoring`)
+            .then(() => cy.getLang())
+            .then(resLang => lang = resLang === "id" ? "idn" : "en")
+            .then(() => cy.fixture('label_translation'))
+            .then(data => input = data)
     });
 
     describe('List Mentoring', () => {
@@ -170,7 +168,7 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
-                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.company}`));
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.company}`));
                         if(found === true){
                             expect(found).to.be.true;
                         }else{
@@ -185,7 +183,7 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
-                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.company}`));
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.university}`));
                         if(found === true){
                             expect(found).to.be.true;
                         }else{
@@ -200,7 +198,7 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
-                        const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.company}`));
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.jurusan}`));
                         if(found === true){
                             expect(found).to.be.true;
                         }else{
@@ -353,6 +351,7 @@ describe('Landing Page Mentoring', () => {
                         cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a[${randomNumber}]`)
                             .should('be.visible')
                             .click();
+                        cy.wait(2000);
                         cy.xpath(`//a[contains(text(), "${input[lang].review}")]`).should('be.visible').click({multiple: true});
                     });
             });
@@ -370,6 +369,7 @@ describe('Landing Page Mentoring', () => {
                         cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a[${randomNumber}]`)
                             .should('be.visible')
                             .click();
+                        cy.wait(2000);
                         cy.xpath(`//a[contains(text(), "${input[lang].review}")]`).should('be.visible').click({multiple: true});
                     });
             });

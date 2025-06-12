@@ -1,32 +1,8 @@
 const { defineConfig } = require("cypress");
 
 const envVariables = {
-  LANGUAGE: "idn",
-  dev: {
-    url: "https://job-portal-user-dev-skx7zw44dq-et.a.run.app",
-    en:{
-      review: "Review",
-      signup: "Sign Up",
-      login: "Log In",
-      nextbtn: "Next",
-      backbtn: "Back",
-      finishbtn: "Finish",
-      work: "Work",
-      org: "Organizational",
-      cert: "Certification/Achievement",
-    },
-    idn: {
-      review: "Ulasan",
-      signup: "Daftar",
-      login: "Masuk",
-      nextbtn: "Selanjutnya",
-      backbtn: "Kembali",
-      finishbtn: "Finish",
-      work: "Kerja",
-      org: "Organisasi",
-      cert: "Sertifikasi/Pencapaian",
-    }
-  }
+  language: "idn",
+  base_url: "https://job-portal-user-dev-skx7zw44dq-et.a.run.app",
 }
 
 module.exports = defineConfig({
@@ -35,7 +11,7 @@ module.exports = defineConfig({
   reporter: 'mochawesome',
   reporterOptions: {
     reportDir: 'cypress/reports/mochawesome-report',
-    overwrite: false,
+    overwrite: true,
     html: true,
     json: true,
     timestamp: 'mmddyyyy_HHMMss'

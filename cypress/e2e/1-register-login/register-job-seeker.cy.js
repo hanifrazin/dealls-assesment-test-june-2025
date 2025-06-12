@@ -2,32 +2,54 @@ import { Faker, id_ID } from "@faker-js/faker";
 
 describe('Register to Dealls as Job Seeker', () => {
     const faker = new Faker({ locale: [id_ID] });
-    const input = Cypress.env('dev');
-    let lang = Cypress.env('LANGUAGE') || 'idn';
+    const base_url = Cypress.env('base_url');
+    let lang = Cypress.env('language') || 'idn';
+    let input = {};
     let dataTalent, userJob, userMentor = {};
 
     beforeEach(() => {
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
+
+        // Step 1: Ambil data dan siapkan faker untuk dataTalent
         cy.fixture('data_job_seeker').then((data) => {
             const fName = faker.person.firstName();
             const lName = faker.person.lastName();
+
             data.name = `${fName} ${lName}`;
-            data.phone = `6285${faker.number.int({min:11111111, max:99999999})}`;
-            data.email = faker.internet.email({ firstName: fName.toLowerCase(), lastName: lName.toLowerCase(), provider: 'gmail.com' });
+            data.phone = `6285${faker.number.int({ min: 11111111, max: 99999999 })}`;
+            data.email = faker.internet.email({
+            firstName: fName.toLowerCase(),
+            lastName: lName.toLowerCase(),
+            provider: 'gmail.com'
+            });
             data.linkedIn = `https://www.linkedin.com/in/${fName.toLowerCase()}-${lName.toLowerCase()}/`;
+
             dataTalent = data;
-        });
-        cy.fixture('job_seeker_user').then((user) => {
+        })
+
+        // Step 2: Ambil user data lainnya (berurutan, chaining pakai then)
+        .then(() => cy.fixture('job_seeker_user'))
+        .then((user) => {
             userJob = user;
-        });
-        cy.fixture('mentor_user').then((mentor) => {
+        })
+
+        .then(() => cy.fixture('mentor_user'))
+        .then((mentor) => {
             userMentor = mentor;
-        });
-        cy.visit(`${input.url}`);
-        cy.get('html').should('have.attr', 'lang').then((language) => {
-            cy.log(`${language}`);
-            lang = language === 'id' ? 'idn' : 'en';
+        })
+
+        .then(() => cy.fixture('label_translation'))
+        .then((label) => {
+            input = label;
+        })
+
+        // Step 3: Kunjungi halaman dan ambil bahasa
+        .then(() => cy.visit(base_url))
+        .then(() => cy.getLang())
+        .then((resLang) => {
+            lang = resLang === 'id' ? 'idn' : 'en';
+            cy.log(`Lang: ${lang}`);
         });
     });
     

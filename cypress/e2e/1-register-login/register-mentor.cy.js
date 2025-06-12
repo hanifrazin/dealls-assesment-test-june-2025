@@ -2,9 +2,9 @@ import { Faker, id_ID } from "@faker-js/faker";
 
 describe(`Register to Dealls as a Mentor`, () => {
     const faker = new Faker({ locale: [id_ID] });
-    const input = Cypress.env('dev');
-    let lang = Cypress.env('LANGUAGE') || 'idn';
-    let dataTalent, userMentor = {};
+    const base_url = Cypress.env('base_url');
+    let lang = Cypress.env('language') || 'idn';
+    let input, dataTalent, userMentor = {};
 
     beforeEach(() => {
         cy.clearAllCookies();
@@ -18,15 +18,13 @@ describe(`Register to Dealls as a Mentor`, () => {
             data.linkedIn = `https://www.linkedin.com/in/${fName.toLowerCase()}${lName.toLowerCase()}/`;
             data.instagram = `https://www.instagram.com/${fName.toLowerCase()}${lName.toLowerCase()}/`;
             dataTalent = data;
-        });
-        cy.fixture('mentor_user').then((mentor) => {
-            userMentor = mentor;
-        });
-        cy.visit(`${input.url}`);
-        cy.get('html').should('have.attr', 'lang').then((language) => {
-            cy.log(`${language}`);
-            lang = language === 'id' ? 'idn' : 'en';
-        });
+        }).then(() => cy.fixture('mentor_user'))
+          .then(mentor => userMentor = mentor)
+          .then(() => cy.visit(`${base_url}`))
+          .then(() => cy.getLang())
+          .then(resLang => lang = resLang === 'id' ? 'idn' : 'en')
+          .then(() => cy.fixture('label_translation'))
+          .then(data => input = data);
     });
 
     it('Onboarding step for new mentor', () => {
