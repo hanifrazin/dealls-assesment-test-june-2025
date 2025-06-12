@@ -118,55 +118,59 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.name}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
-                .should('have.length.greaterThan', 0)
-                .then(($el) => {
-                    const found = [...$el].some(el => el.innerText.trim().includes(`${karier.name}`));
-                    cy.log(`mentor karier found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
-                    if(found === true){
-                        expect(found).to.be.true;
-                    }else{
-                        expect(found).to.be.false;
-                    }
-                });
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.name}`));
+                        cy.log(`mentor karier found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                    });
             });
 
             it('should be search mentors by company at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.company}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[2]/div`)
-                .should('have.length.greaterThan', 0)
-                .then(($el) => {
-                    const found = [...$el].some(el => el.innerText.trim().includes(`${karier.company}`));
-                    cy.log(`company found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
-                    if(found === true){
-                        expect(found).to.be.true;
-                    }else{
-                        expect(found).to.be.false;
-                    }
-                });
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.company}`));
+                        cy.log(`company found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                    });
             });
 
             it('should be search mentors by role at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.role}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[1]/div`)
-                .should('have.length.greaterThan', 0)
-                .then(($el) => {
-                    const found = [...$el].some(el => el.innerText.trim().includes(`${karier.role}`));
-                    cy.log(`role found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
-                    if(found === true){
-                        expect(found).to.be.true;
-                    }else{
-                        expect(found).to.be.false;
-                    }
-                });
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].some(el => el.innerText.trim().includes(`${karier.role}`));
+                        cy.log(`role found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                    });
             });
 
             it('should be search mentors by industries at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.industry}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const found = [...$el].some(el => el.innerText.trim().includes(`${karier.company}`));
                         if(found === true){
@@ -181,7 +185,8 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.university}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const found = [...$el].some(el => el.innerText.trim().includes(`${karier.university}`));
                         if(found === true){
@@ -234,23 +239,25 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.name}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
-                .should('have.length.greaterThan', 0)
-                .then(($el) => {
-                    const found = [...$el].every(el => el.innerText.trim().includes(`${akademik.name}`));
-                    cy.log(`mentor akademik found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
-                    if(found === true){
-                        expect(found).to.be.true;
-                    }else{
-                        expect(found).to.be.false;
-                    }
-                });
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
+                    .then(($el) => {
+                        const found = [...$el].every(el => el.innerText.trim().includes(`${akademik.name}`));
+                        cy.log(`mentor akademik found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
+                        if(found === true){
+                            expect(found).to.be.true;
+                        }else{
+                            expect(found).to.be.false;
+                        }
+                    });
             });
 
             it('should be search mentors by company at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.company}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.company}`));
                         if(found === true){
@@ -265,7 +272,8 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.role}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.role}`));
                         if(found === true){
@@ -280,7 +288,8 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.industry}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.industry}`));
                         if(found === true){
@@ -295,7 +304,8 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.university}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[2]/div`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.university}`));
                         if(found === true){
@@ -311,7 +321,8 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.jurusan}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[1]/div`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.jurusan}`));
                         if(found === true){
@@ -327,7 +338,8 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.topics}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//div[@class="rc-overflow"]//p`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const found = [...$el].some(el => el.innerText.trim().includes(`${akademik.topics}`));
                         if(found === true){
@@ -345,7 +357,8 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.company}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const total = $el.length;
                         const randomNumber = Math.floor(Math.random() * total) + 1;
@@ -363,7 +376,8 @@ describe('Landing Page Mentoring', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.topics}`);
                 cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const total = $el.length;
                         const randomNumber = Math.floor(Math.random() * total) + 1;

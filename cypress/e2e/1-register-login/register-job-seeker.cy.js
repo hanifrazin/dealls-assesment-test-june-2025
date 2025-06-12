@@ -4,24 +4,23 @@ describe('Register to Dealls as Job Seeker', () => {
     const faker = new Faker({ locale: [id_ID] });
     const base_url = Cypress.env('base_url');
     let lang = Cypress.env('language') || 'idn';
-    let input = {};
-    let dataTalent, userJob, userMentor = {};
+    let input, dataTalent, userJob = {};
 
     beforeEach(() => {
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
 
         // Step 1: Ambil data dan siapkan faker untuk dataTalent
-        cy.fixture('data_job_seeker').then((data) => {
+        cy.fixture('master-user/trainee/data_job_seeker').then((data) => {
             const fName = faker.person.firstName();
             const lName = faker.person.lastName();
 
-            data.name = `${fName} ${lName}`;
+            data.name = `${fName} ${lName} Traineetest`;
             data.phone = `6285${faker.number.int({ min: 11111111, max: 99999999 })}`;
             data.email = faker.internet.email({
-            firstName: fName.toLowerCase(),
-            lastName: lName.toLowerCase(),
-            provider: 'gmail.com'
+                firstName: fName.toLowerCase(),
+                lastName: `${lName.toLowerCase()}.traineetest`,
+                provider: 'gmail.com'
             });
             data.linkedIn = `https://www.linkedin.com/in/${fName.toLowerCase()}-${lName.toLowerCase()}/`;
 
@@ -29,14 +28,9 @@ describe('Register to Dealls as Job Seeker', () => {
         })
 
         // Step 2: Ambil user data lainnya (berurutan, chaining pakai then)
-        .then(() => cy.fixture('job_seeker_user'))
+        .then(() => cy.fixture('master-user/trainee/trainee_account'))
         .then((user) => {
             userJob = user;
-        })
-
-        .then(() => cy.fixture('mentor_user'))
-        .then((mentor) => {
-            userMentor = mentor;
         })
 
         .then(() => cy.fixture('label_translation'))
@@ -68,7 +62,8 @@ describe('Register to Dealls as Job Seeker', () => {
         cy.url().should('include','/onboarding?step=2');
         cy.get('#jobSearchStatus').click();
         cy.xpath(`(//div[@class="rc-virtual-list-holder-inner"])[1]/div`)
-            .should('have.length', 3)
+            .should('be.visible')
+            .and('have.length', 3)
             .then((elements) => {
                 const randomIndex = Math.floor(Math.random() * elements.length) + 1;
                 cy.xpath(`//div[@class="rc-virtual-list-holder-inner"]/div[${randomIndex}]`).click();
@@ -87,7 +82,8 @@ describe('Register to Dealls as Job Seeker', () => {
         });
         cy.get('#eligibility').click({multiple: true});
         cy.xpath(`(//div[@class="rc-virtual-list-holder-inner"])[2]/div`)
-            .should('have.length.greaterThan', 4)
+            .should('be.visible')
+            .and('have.length.greaterThan', 4)
             .then((elements) => {
                 const randomIndex = Math.floor(Math.random() * elements.length) + 1;
                 cy.xpath(`(//div[@class="rc-virtual-list-holder-inner"])[2]/div[${randomIndex}]`).click({force: true});
@@ -150,20 +146,20 @@ describe('Register to Dealls as Job Seeker', () => {
 
         //6th step
         cy.url().should('include','/onboarding?step=6');
-        cy.get(`#password`).click().type('password');
-        cy.get(`#passwordConfirmation`).type('password');
-        cy.get(`#checkPrivacyPolicy`).check();
-        cy.then(() => {
+        cy.get(`#password`).click().type('Tr@in33P@ss');
+        cy.get(`#passwordConfirmation`).type('Tr@in33P@ss');
+        cy.get(`#checkPrivacyPolicy`).check().then(() => {
             const user = {
+                nama: dataTalent.name,
                 username: dataTalent.email,
-                password: 'password',
+                password: 'Tr@in33P@ss',
             }
 
-            cy.writeFile('cypress/fixtures/job_seeker_user.json', user);
+            cy.writeFile('cypress/fixtures/master-user/trainee/trainee_account.json', user);
         });
         cy.get(`#dealls-onboarding-finish`)
             .should('not.be.disabled')
-            .and('have.text', input[lang].finishbtn)
+            .and('have.text', 'Finish')
             .click({ force: true });
 
         //welcome user

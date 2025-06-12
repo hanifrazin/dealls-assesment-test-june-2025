@@ -8,7 +8,9 @@
       "finishbtn": "Finish",
       "work": "Work",
       "org": "Organizational",
-      "cert": "Certification/Achievement"
+      "cert": "Certification/Achievement",
+      "careerbtn": "Career",
+      "academicbtn": "Academics (S1/S2)"
     },
     "idn": {
       "review": "Ulasan",
@@ -19,6 +21,8 @@
       "finishbtn": "Finish",
       "work": "Kerja",
       "org": "Organisasi",
-      "cert": "Sertifikasi/Pencapaian"
+      "cert": "Sertifikasi/Pencapaian",
+      "careerbtn": "Karir",
+      "academicbtn": "Akademik (S1/S2)"
     }
 }

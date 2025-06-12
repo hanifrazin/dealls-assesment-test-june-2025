@@ -1,0 +1,22 @@
+{
+    "name": "Ryan",
+    "phone": "6287774400999",
+    "email": "test@blabla.com",
+    "linkedIn": "https://www.linkedin.com/in/test-profile",
+    "instagram": "https://www.instagram.com/username/",
+    "work_exp": {
+        "company": "Blibli",
+        "industry": "Startup",
+        "level": "Lead",
+        "role": "SDET",
+        "dateStart": "01/2015",
+        "dateEnd": "05/2025"
+    },
+    "edu": {
+        "institution": "Universitas Indonesia",
+        "major": "Ilmu Komputer",
+        "startDate": "08/2009",
+        "endDate": "08/2013"
+    },
+    "aboutMe": "Hi, perkenalkan nama ku {{name}}. Aku alumni dari {{institution}} di jurusan {{major}}. Saat, ini aku berkarir di {{company}} sebagai {{level}} {{role}}. Aku sudah sekian tahun mengawali karir ku dari awal sampe detik ini dan banyak sekali proses yang aku hadapi, hingga suka dan duka. Saya sengat senang bisa membantu anda semua yang ingin memulai karir atau switch karir di posisi ini. Sampai ketemu di sesi 1 on 1 ya. See you!!!"
+}
