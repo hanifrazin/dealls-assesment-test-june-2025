@@ -116,7 +116,7 @@ describe('Landing Page Mentoring', () => {
         context('Search Mentors at Karier tab',() => {
             it('should be search mentors by name at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.name}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
@@ -132,7 +132,7 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by company at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.company}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[2]/div`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
@@ -148,7 +148,7 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by role at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.role}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[1]/div`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
@@ -164,7 +164,7 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by industries at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.industry}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
@@ -179,7 +179,7 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by university at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.university}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
@@ -194,9 +194,10 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by major / jurusan at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.jurusan}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const found = [...$el].some(el => el.innerText.trim().includes(`${karier.jurusan}`));
                         if(found === true){
@@ -209,9 +210,10 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by topic at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.topics}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//div[@class="rc-overflow"]//p`)
-                    .should('have.length.greaterThan', 0)
+                    .should('be.visible')
+                    .and('have.length.greaterThan', 0)
                     .then(($el) => {
                         const found = [...$el].some(el => el.innerText.trim().includes(`${karier.topics}`));
                         cy.log(`topic found: ${[...$el].map(el => el.innerText.trim()).join(', ')}`);
@@ -230,7 +232,7 @@ describe('Landing Page Mentoring', () => {
             });
             it('should be search mentors by name at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.name}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
                 .should('have.length.greaterThan', 0)
                 .then(($el) => {
@@ -246,7 +248,7 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by company at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.company}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
@@ -261,7 +263,7 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by role at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.role}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
@@ -276,7 +278,7 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by industries at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.industry}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
@@ -291,7 +293,7 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by university at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.university}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[2]/div`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
@@ -307,7 +309,7 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by major / jurusan at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.jurusan}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a/div[2]/div[2]/div[1]/div`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
@@ -323,7 +325,7 @@ describe('Landing Page Mentoring', () => {
 
             it('should be search mentors by topic at Akademik tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.topics}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//div[@class="rc-overflow"]//p`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
@@ -341,7 +343,7 @@ describe('Landing Page Mentoring', () => {
         context('View Mentor Details', () => {
             it('view detail mentor at Karier tab', () => {
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${karier.company}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
@@ -359,7 +361,7 @@ describe('Landing Page Mentoring', () => {
             it('view detail mentor at Akademik tab', () => {
                 cy.xpath(`//div[@class="flex border-b border-b-neutral-15"]/a[2]`).click();
                 cy.xpath(`//input[@id="searchMentor"]`).click({force:true}).type(`${akademik.topics}`);
-                cy.wait(2000);
+                cy.wait(1000);
                 cy.xpath(`//div[@class="mt-4 grid grid-cols-1 gap-y-4 lg:mt-6 lg:grid-cols-4 lg:gap-x-[22px] lg:gap-y-5"]/a//h4`)
                     .should('have.length.greaterThan', 0)
                     .then(($el) => {
