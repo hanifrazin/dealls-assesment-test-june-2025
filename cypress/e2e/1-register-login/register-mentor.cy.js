@@ -14,7 +14,7 @@ describe(`Register to Dealls as a Mentor`, () => {
             const lName = faker.person.lastName();
             data.name = `${fName} ${lName} Mentortest`;
             data.phone = `6285${faker.number.int({min:12222222, max:95557777})}`;
-            data.email = faker.internet.email({ firstName: fName.toLowerCase(), lastName: `${lName.toLowerCase()}-mentortest`, provider: 'gmail.com' });
+            data.email = faker.internet.email({ firstName: fName.toLowerCase(), lastName: `${lName.toLowerCase()}.mentortest`, provider: 'gmail.com' });
             data.linkedIn = `https://www.linkedin.com/in/${fName.toLowerCase()}${lName.toLowerCase()}/`;
             data.instagram = `https://www.instagram.com/${fName.toLowerCase()}${lName.toLowerCase()}/`;
             dataMentor = data;
@@ -134,6 +134,7 @@ describe(`Register to Dealls as a Mentor`, () => {
         cy.get('#checkPrivacyPolicy').check({force:true}).then(() => {
             const mentor = {
                 name: dataMentor.name,
+                wanumber: dataMentor.phone,
                 username: dataMentor.email,
                 password: 'M3nTorP@ss',
             }

@@ -7,7 +7,9 @@
     "merge-reports": "mochawesome-merge cypress/reports/mochawesome-report/*.json > cypress/reports/merge-report/merge-mochawesome.json",
     "generate-report": "marge cypress/reports/merge-report/merge-mochawesome.json --reportDir cypress/reports/html-report --reportFilename index.html --inlineAssets",
     "report": "npm run merge-reports && npm run generate-report",
-    "test:only": "npx cypress run --browser chrome --headless",
+    "test:chrome": "npx cypress run --browser chrome --headless",
+    "test:edge": "npx cypress run --browser edge --headless",
+    "test:electron": "npx cypress run --browser electron --headless",
     "test:register": "npx cypress run --browser chrome --headless  --spec \"cypress/e2e/1-register-login/*.cy.js\"",
     "test:mentoring": "npx cypress run --browser chrome --headless  --spec \"cypress/e2e/3-mentoring/*.cy.js\"",
     "test:report": "npx cypress run --browser chrome --headless --reporter mochawesome --reporter-options reportDir=cypress/reports/mochawesome-report,overwrite=true,json=true"

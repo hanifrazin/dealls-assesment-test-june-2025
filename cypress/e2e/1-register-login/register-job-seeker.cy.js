@@ -151,6 +151,7 @@ describe('Register to Dealls as Job Seeker', () => {
         cy.get(`#checkPrivacyPolicy`).check().then(() => {
             const user = {
                 nama: dataTalent.name,
+                wanumber: dataTalent.phone,
                 username: dataTalent.email,
                 password: 'Tr@in33P@ss',
             }
